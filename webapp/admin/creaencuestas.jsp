@@ -217,8 +217,11 @@
                         if(estilo != 'styleSelected') {
                             filas[f].setAttribute('class', 'styleSelected');
                             document.frmCat.selectedEncuesta.value = Valor;
-                            document.getElementById("modEncuesta").href="wEncuesta.jsp?idEncuesta="+document.getElementById("selectedEncuesta").value+"&accion=Modificar";
-                            //alert("url="+document.getElementById("modEncuesta").href+"--");
+                            //document.getElementById("modEncuesta").href="wEncuesta.jsp?idEncuesta="+Valor+"&accion=Modificar";
+                            var hrefN= "wEncuesta.jsp?idEncuesta="+Valor+"&accion=Modificar";
+                            //alert(hrefN);
+                            $("#modEncuesta").attr('href',hrefN);
+                            alert("url="+document.getElementById("modEncuesta").href+"--");
                             /* Modifica el valor del link Cambiar*/
                             /*
                                                 var lnk = document.getElementById('modEncuesta');
@@ -527,7 +530,7 @@
                                                                         <a rel="shadowbox;width=850;height=550" href="wEncuesta.jsp">Agregar</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a id="modEncuesta" rel="shadowbox;width=850;height=550" href="wEncuesta.jsp?accion=Modificar&idEncuesta=" >Cambiar</a>
+                                                                        <a id="modEncuesta" rel="shadowbox;width=850;height=550" href="creaencuestas.jsp" >Cambiar</a>
                                                                         <!--<a id="modEncuesta" rel="shadowbox;width=850;height=550" href="Modificar();">Cambiar</a>-->
                                                                         <!--<a id="modEncuesta" rel="shadowbox;width=850;height=550" href="wEncuesta.jsp?Encuesta=${param.selectedEncuesta}&accion=Modificar"-->
                                                                         <!-- <a id="modEncuesta" rel="shadowbox;width=850;height=550" href="wEncuesta.jsp?Encuesta=%P%&accion=Modificar" >Cambiar</a>onClick="location.href=this.href+'?Encuesta='+document.frmCat.selectedEncuesta.value;" -->
