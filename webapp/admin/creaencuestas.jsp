@@ -217,11 +217,11 @@
                         if(estilo != 'styleSelected') {
                             filas[f].setAttribute('class', 'styleSelected');
                             document.frmCat.selectedEncuesta.value = Valor;
-                            //document.getElementById("modEncuesta").href="wEncuesta.jsp?idEncuesta="+Valor+"&accion=Modificar";
-                            var hrefN= "wEncuesta.jsp?idEncuesta="+Valor+"&accion=Modificar";
-                            //alert(hrefN);
-                            $("#modEncuesta").attr('href',hrefN);
-                            alert("url="+document.getElementById("modEncuesta").href+"--");
+                            //document.getElementById("modEncuesta").href="wEncuesta.jsp?idEncuesta="+document.getElementById("selectedEncuesta").value+"&accion=Modificar";
+                            //var hrefN= "wEncuesta.jsp?idEncuesta="+document.getElementById("selectedEncuesta").value+"&accion=Modificar";
+                            //var hrefN= "wEncuesta.jsp?idEncuesta=123&accion=Modificar";
+                            //$("#modEncuesta").attr('href',hrefN);
+                            //alert("url="+document.getElementById("modEncuesta").href+"--");
                             /* Modifica el valor del link Cambiar*/
                             /*
                                                 var lnk = document.getElementById('modEncuesta');
@@ -248,7 +248,7 @@
                     }
                 }
             }
-            function Modificar(lnk) {
+            /*function Modificar(lnk) {
                 if(document.frmCat.selectedEncuesta != null && document.frmCat.selectedEncuesta != "") {
                     //alert("Modificara la encuesta: " + document.frmCat.selectedEncuesta.value);
                     var valor = document.frmCat.selectedEncuesta.value;
@@ -270,11 +270,20 @@
                                         animateFade: false
                                 });
                      */
-                }
+                /*}
                 else {
                     alert("Debe seleccionar una encuesta.");
                     return false;
                 }
+            }*/
+            function Modificar(){
+                var hrefN= "wEncuesta.jsp?idEncuesta="+document.getElementById("selectedEncuesta").value+"&accion=Modificar";
+                Shadowbox.open({
+                    content: hrefN,
+                    player: 'iframe',
+                    width: 850,
+                    height: 550
+                });
             }
             function Eliminar()
             {
@@ -373,10 +382,6 @@
     </head>
     <body>
         <jsp:useBean id="srvEncuestas" class="lib.beans.Encuestas" />
-        <%
-            HttpSession sesion=request.getSession();
-            System.out.println("sesion="+sesion);
-        %>
         <table cellpadding="0" cellspacing="0" align="center" style="width:100%;height:600px;">
             <tr>
                 <td style="width:310px;height:100px;"><img src="../img/evaLogoProsa.jpg"/></td>
@@ -529,17 +534,19 @@
                                                                     <li>
                                                                         <a rel="shadowbox;width=850;height=550" href="wEncuesta.jsp">Agregar</a>
                                                                     </li>
+                                                                    <!--
                                                                     <li>
-                                                                        <a id="modEncuesta" rel="shadowbox;width=850;height=550" href="creaencuestas.jsp" >Cambiar</a>
+                                                                        <a id="modEncuesta" rel="shadowbox;width=850;height=550" href="" >Cambiar</a>
                                                                         <!--<a id="modEncuesta" rel="shadowbox;width=850;height=550" href="Modificar();">Cambiar</a>-->
                                                                         <!--<a id="modEncuesta" rel="shadowbox;width=850;height=550" href="wEncuesta.jsp?Encuesta=${param.selectedEncuesta}&accion=Modificar"-->
                                                                         <!-- <a id="modEncuesta" rel="shadowbox;width=850;height=550" href="wEncuesta.jsp?Encuesta=%P%&accion=Modificar" >Cambiar</a>onClick="location.href=this.href+'?Encuesta='+document.frmCat.selectedEncuesta.value;" -->
-                                                                    </li>
-                                                                    <!--                                                    
+                                                                    <!--</li>-->
+
+                                                                                                                        
                                                                     <li onClick="Modificar();">
                                                                         Cambiar
                                                                     </li>
-                                                                    -->
+                                                                    
                                                                     <li onClick="Eliminar();">
                                                                         Eliminar
                                                                     </li>

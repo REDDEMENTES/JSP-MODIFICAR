@@ -27,6 +27,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@page import="java.util.*" %>
+<%@page import="java.lang.*" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -163,10 +164,10 @@
                 }
                 return true;
             }
-            $(document).ready(function() {
+            /*$(document).ready(function() {
                 var enc = window.parent.frmCat.selectedEncuesta.value;
                 //alert("val: " + enc);
-            });
+            });*/
             function cancelar() {
                 var Shadowbox = window.parent.Shadowbox;
                 window.parent.location.reload();
@@ -243,21 +244,29 @@
                                     System.out.println("inicialize!!!!!!!");
                                     srvWizard.initialize();
                                 }*/
-                                System.out.println("\n\n\nURL: " + request.getRequestURL()+ " tamparametros: " + request.getParameterMap().size());
-                                Enumeration y=request.getParameterNames();
+                                //System.out.println("\n\n\nURL: " + request.getRequestURL()+ " tamparametros: " + request.getParameterMap().size());
+                                /*Enumeration y=request.getParameterNames();
                                 while(y.hasMoreElements()){
-                                    System.out.println("el="+y.nextElement());
+                                    String nom=(String)y.nextElement();
+                                    System.out.println("el="+nom);
+                                    String [] z=request.getParameterValues(nom);
+                                    System.out.println("zS="+z.length);
+                                    for(int i=0; i<z.length; i++){
+                                        System.out.println("val="+z[i]);
+                                    }
+                                }*/
+                                String x=request.getParameter("idEncuesta");
+                                if(x!=null && x!= ""){
+                                    //System.out.println("idEncuesta="+x+"--");
+                                    srvWizard.setIdEncuesta(x);
+                                    //System.out.println("idEncuesta="+srvWizard.idEncuesta+"--");
                                 }
-                                String x=request.getParameter("idEncuesta");//.value
-                                System.out.println("idEncuesta="+x+"--");
-                                srvWizard.setIdEncuesta(x);
-                                System.out.println("idEncuesta="+srvWizard.idEncuesta+"--");
                                 srvWizard.processRequest(request, response);
                             %>
                             <form name="Encuesta" action="wEncuesta.jsp" method="post">
                                 <input type="hidden" name="estatus"/>
                                 <input type="hidden" name="accion"/>
-                                <input type="hidden" name="idEncuesta" />
+                                <input type="hidden" name="idEncuesta" value="${srvWizard.encuesta.id}"/>
                                 <ol>
                                     <li class="formulario">
                                         <label>Clave: </label>
